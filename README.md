@@ -24,7 +24,7 @@ Encountered Difficulties
   ```$sudo gem install execjs```
 -  Installing a JS Runtime
   ```$sudo apt-get install nodejs```
-  
+- Trying to migrate to postgresql failed
 
 Ruby on Rails
 -------------

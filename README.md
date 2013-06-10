@@ -24,7 +24,19 @@ Encountered Difficulties
   ```$sudo gem install execjs```
 -  Installing a JS Runtime
   ```$sudo apt-get install nodejs```
-- Trying to migrate to postgresql **failed**
+
+-Installing Sun-JDK for working with RubyMine5.4
+```
+  tar -xvzf jdk-7u21-linux-x64.tar.gz 
+  sudo mv jdk1.7.0_21 /usr/lib/jvm
+  sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.7.0_21/bin/javac 1
+  sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.7.0_21/bin/java 1
+  sudo update-alternatives --install /usr/bin/javaws javaws /usr/lib/jvm/jdk1.7.0_21/bin/javaws 1
+  sudo update-alternatives  --config javac
+  sudo update-alternatives  --config java
+  sudo update-alternatives  --config javaws
+  java -version
+```
 
 Ruby on Rails
 -------------

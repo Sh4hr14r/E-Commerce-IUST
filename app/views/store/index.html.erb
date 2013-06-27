@@ -6,6 +6,7 @@
        <%=truncate product.description,:length =>80 %>
        <div class="price_line">
          <span class="price"><%= product.price %>$</span>
+         <div class="actions"><%= button_to 'Add to Cart', line_items_path(:product_id => product) %></div>
        </div>
      </div>
 <% end %>

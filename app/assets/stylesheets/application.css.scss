@@ -111,12 +111,12 @@ input[type="submit"] {
   width: auto;
 }
 #columns {
-  background: url("1584335.png") repeat;
+  background: url("3687685.png") repeat;
 
 }
 
 #side-bar {
-  background-color: #fff300;
+  background-color: #666666;
   width: 19%;
   float: left;
   padding: 1% 1% 1% 0;
@@ -131,3 +131,28 @@ input[type="submit"] {
   width: 80%;
   margin-left: 20%;
 }
+/////////////////////////////////////////////////
+// i just added below lines for cart table -erf@n
+#main .cart_title {
+  font: 120% bold;
+}
+#main .item_price, #store .total_line {
+  text-align: right;
+}
+#main .total_line .total_cell {
+  font-weight: bold;
+  border-top: 1px solid #595;
+}
+// styles for the cart in the sidebar
+#cart, #cart table {
+  font-size: smaller;
+  color:
+    white;
+}
+#cart table {
+  border-top:
+    1px dotted #595;
+  border-bottom: 1px dotted #595;
+  margin-bottom: 10px;
+}
+///////////////////////////////////////////////////

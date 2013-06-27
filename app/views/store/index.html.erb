@@ -1,0 +1,11 @@
+<h1>IUST Store</h1>
+<% @products.each do |product| %>
+     <div class="entry">
+       <span class="product_image_holder"><%= image_tag product.image_url %></span>
+       <h3 class="product_name"><%= product.name %></h3>
+       <%=truncate product.description,:length =>80 %>
+       <div class="price_line">
+         <span class="price"><%= product.price %>$</span>
+       </div>
+     </div>
+<% end %>

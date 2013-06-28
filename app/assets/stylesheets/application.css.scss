@@ -110,10 +110,7 @@ input[type="submit"] {
   display: inline-block;
   width: auto;
 }
-#columns {
-  background: url("3687685.png") repeat;
 
-}
 
 #side-bar {
   background-color: #666666;
@@ -126,13 +123,15 @@ input[type="submit"] {
     color: red;
   }
 }
-#main {
+#products {
   background: #ffffff;
-  width: 80%;
   margin-left: 20%;
 }
 /////////////////////////////////////////////////
 // i just added below lines for cart table -erf@n
+#main {
+  background: url("1584335.png") repeat;
+}
 #main .cart_title {
   font: 120% bold;
 }
@@ -156,3 +155,22 @@ input[type="submit"] {
   margin-bottom: 10px;
 }
 ///////////////////////////////////////////////////
+/* Styles for order form */
+.order_form fieldset {
+  background: #cc6666;
+}
+.order_form legend {
+  color: #dfd;
+  background: #cc0000;
+  font-family: sans-serif;
+  padding: 0.2em 1em;
+}
+.order_form label {
+  width: 5em;
+  float: left;
+  text-align: right;
+  padding-top: 0.2em;
+  margin-right: 0.1em;
+  display: block;
+}
+//////////////////////////////////////////////////////

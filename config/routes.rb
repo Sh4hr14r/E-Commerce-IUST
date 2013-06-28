@@ -1,4 +1,8 @@
 EcomAuth::Application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  root :to => "store#index"
+  ActiveAdmin.routes(self)
+
   resources :orders
 
 
@@ -16,7 +20,7 @@ EcomAuth::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
-  root :to => "store#index"
+
   resources :users
   resources :sessions
   resources :password_resets

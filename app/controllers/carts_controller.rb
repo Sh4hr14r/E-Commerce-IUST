@@ -1,4 +1,6 @@
 class CartsController < ApplicationController
+
+  skip_before_filter :no_access , :only => [:create,:destroy,:update]
   # GET /carts
   # GET /carts.json
   def index

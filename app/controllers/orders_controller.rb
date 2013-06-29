@@ -1,4 +1,8 @@
 class OrdersController < ApplicationController
+
+  skip_before_filter :no_access , :only => [:create,:destroy,:update,:new]
+
+
   # GET /orders
   # GET /orders.json
   def index
@@ -27,6 +31,8 @@ class OrdersController < ApplicationController
     @cart = current_cart
     if @cart.line_items.empty?
       redirect_to root_url, :notice => "Your cart is empty"
+    elsif current_user.nil?
+      redirect_to root_url, :notice => "You must first sign in to place order"
       return
     end
     @order = Order.new

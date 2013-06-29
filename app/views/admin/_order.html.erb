@@ -1,0 +1,46 @@
+<table>
+
+  <tr>
+    <td>Order id:</td>
+    <td><%= @order.id %></td>
+  </tr>
+  <tr>
+    <td>customer user name:</td>
+    <td><%= @order.name %></td>
+  </tr>
+  <tr>
+    <td>address:</td>
+    <td><%= @order.address %></td>
+  </tr>
+  <tr>
+    <td>email:</td>
+    <td><%= @order.email %></td>
+  </tr>
+  <tr>
+    <td>payment type:</td>
+    <td><%= @order.pay_type %></td>
+  </tr>
+  <tr>
+    <td>order created at:</td>
+    <td><%= @order.created_at.in_time_zone('Iran') %></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>Product Id</th>
+    <th>Product Name</th>
+    <th>Product Price</th>
+    <th>Quantity</th>
+    <th>Total Price</th>
+  </tr>
+  <% @order.line_items.each do |line| %>
+  <tr>
+    <td><%= line.product.id %></td>
+    <td><%= line.product.name %></td>
+    <td><%= line.product.price %></td>
+    <td><%= line.quantity %></td>
+    <td><%= number_to_currency(line.product.price * line.quantity) %></td>
+  </tr>
+  <% end %>
+</table>

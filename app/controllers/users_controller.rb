@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+
+  skip_before_filter :no_access
   def new
     @user = User.new
   end

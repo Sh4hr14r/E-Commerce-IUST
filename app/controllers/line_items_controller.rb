@@ -1,4 +1,6 @@
 class LineItemsController < ApplicationController
+
+  skip_before_filter :no_access , :only => [:create,:destroy,:update]
   # GET /line_items
   # GET /line_items.json
   def index

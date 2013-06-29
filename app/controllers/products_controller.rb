@@ -1,4 +1,7 @@
 class ProductsController < ApplicationController
+
+  skip_before_filter :no_access , :only => [:create,:destroy,:update]
+
   # GET /products
   # GET /products.json
   def index

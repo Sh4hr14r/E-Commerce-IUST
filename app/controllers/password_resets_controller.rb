@@ -1,5 +1,6 @@
 class PasswordResetsController < ApplicationController
 
+  skip_before_filter :no_access
   def new
   end
 

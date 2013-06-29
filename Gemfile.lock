@@ -47,6 +47,8 @@ GEM
     better_errors (0.9.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bourbon (3.1.7)
       sass (>= 3.2.0)
       thor
@@ -59,6 +61,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    debug_inspector (0.0.2)
     devise (2.2.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -159,6 +162,7 @@ DEPENDENCIES
   activeadmin
   bcrypt-ruby (~> 3.0.0)
   better_errors
+  binding_of_caller
   bourbon
   coffee-rails (~> 3.2.1)
   jquery-rails

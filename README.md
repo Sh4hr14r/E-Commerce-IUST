@@ -11,7 +11,7 @@ Encountered Difficulties
 -  Installing Ruby on Rails using gem
   ```$sudo gem install rails```
 -  Installing ruby-sqlite3
-  ```$sudo apt-get install libsqlite3-dev```"\n"
+  ```$sudo apt-get install libsqlite3-dev```
   ```$sudo gem install ruby-sqlite3 -v '1.3.7'```
 -  Installing Ruby Bundler
   ```$sudo gem install bundler```

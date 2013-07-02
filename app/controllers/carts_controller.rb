@@ -1,6 +1,9 @@
 class CartsController < ApplicationController
 
-  skip_before_filter :no_access , :only => [:create,:destroy,:update]
+  before_filter :access_denied , :except => [:create,:destroy,:update]
+  def access_denied
+    redirect_to root_url , :notice => 'You are not authorized to see this page!'
+  end
   # GET /carts
   # GET /carts.json
   def index

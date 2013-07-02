@@ -1,7 +1,9 @@
 class OrdersController < ApplicationController
 
-  skip_before_filter :no_access , :only => [:create,:destroy,:update,:new]
-
+  before_filter :access_denied , :except => [:create,:destroy,:new,:update]
+  def access_denied
+    redirect_to root_url , :notice => 'You are not authorized to see this page!'
+  end
 
   # GET /orders
   # GET /orders.json

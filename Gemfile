@@ -46,4 +46,4 @@ gem 'meta_search' , '>= 1.1.0.pre'
 gem 'jquery-ui-rails'
 
 # Use for making order list
-gem 'will_paginate' , '>= 3.0.pre'
+#gem 'will_paginate' , '>= 3.0.pre'

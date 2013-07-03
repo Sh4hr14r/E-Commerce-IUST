@@ -1,9 +1,24 @@
+##
+# *this class controls the orders' actions
+# *created using scaffold
+# *the class methods are all common controller methods
+# [index] the index page for model is defined
+# [show]  the page for each specific model instance eg. cart[6] is defined
+# [new]   the page for creating new model instances is defined
+# [create] the stuff done after the new instance created
+# [edit] the edit page for model instances is defined
+# [update] the method called after edit
+# [destroy] mothod for destruction of model instances
 class OrdersController < ApplicationController
-
+  ##--:method: before_filter-------------------------------------------
+  # using the following before_filter users cannot directly access:
+  # * www.site.com/orders
+  # * www.site.com/orders/[i]
   before_filter :access_denied , :except => [:create,:destroy,:new,:update]
   def access_denied
     redirect_to root_url , :notice => 'You are not authorized to see this page!'
   end
+  #-----------------------------------------------------------------
 
   # GET /orders
   # GET /orders.json

@@ -1,8 +1,14 @@
+##
+# *this class controls the Sessions' actions for user only (not for carts)
+# *created manually
 class SessionsController < ApplicationController
   def new
   end
 
   def create
+    ##
+    # * creates session for users login
+    # * authenticates users
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
       if params[:remember_me]
@@ -18,6 +24,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    ##
+    # logs out users
+    # destroys session
     cookies.delete(:auth_token)
     redirect_to root_url, :notice => "Logged out!"
   end

@@ -1,5 +1,10 @@
+##
+#* User database model
+#* generated manually
 class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :username
+  ##
+  # user creation validators
   has_secure_password
   validates_presence_of :password, :on => :create
   validates_presence_of :email
@@ -9,6 +14,8 @@ class User < ActiveRecord::Base
   before_create { token_gen(:auth_token)}
 
   def send_pass_reset
+    ##
+    # if the user requests password reset ,this method does the job
     token_gen(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
     save!

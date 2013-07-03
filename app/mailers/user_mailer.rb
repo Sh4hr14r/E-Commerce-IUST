@@ -1,3 +1,6 @@
+##
+# mailer controllers for user
+# generated manually
 class UserMailer < ActionMailer::Base
   default from: "s.s.mahroughi@gmail.com"
 

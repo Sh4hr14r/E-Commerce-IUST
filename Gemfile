@@ -37,8 +37,10 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use debugger
 # gem 'debugger'
-
-gem 'better_errors'
+group :development do
+  gem 'better_errors'
+  gem 'guard-livereload'
+end
 
 gem 'bourbon'
 gem 'activeadmin'

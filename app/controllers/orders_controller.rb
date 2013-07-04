@@ -52,13 +52,16 @@ class OrdersController < ApplicationController
     elsif current_user.nil?
       redirect_to root_url, :notice => "You must first sign in to place order"
       return
+    else
+      @order = Order.new
+      respond_to do |format|
+        format.html # new.html.erb
+        format.json { render json: @order }
+      end
     end
-    @order = Order.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @order }
-    end
+
+
   end
 
   # GET /orders/1/edit

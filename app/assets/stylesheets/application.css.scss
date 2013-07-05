@@ -1,13 +1,14 @@
-/*
-*=require_jquery-ui
-*/
 @import "bourbon";
 @import "active_admin.css.scss";
+@import "carts.css.scss";
+@import "orders.css.scss";
+@import "sessions.css.scss";
+@import "store.css.scss";
 
 html, body {
-    background-color: #4B7399;
+    background: url('bgpat.png');
     font-family: Verdana, Helvetica, Arial, sans-serif;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 a img {
@@ -53,7 +54,7 @@ form label {
 }
 
 form .field, form {
-    margin: 12px 0;
+    margin:1px;
 }
 
 .fieldWithErrors {
@@ -87,94 +88,29 @@ form .field, form {
     margin: 15px 0;
 }
 
-input[type=checkbox] {
-   margin-right: 8px;
-}
 
 #user-nav {
     background-color: #ffffff;
     width: 100%;
 }
-.actions {
-@include button(simple, #d62400);
-}
 input[type="submit"] {
-  -webkit-box-align: center;
-  text-align: center;
-  cursor: default;
-  color: #fff300;
-  padding: 0;
-  border: none;
-  border-image: none;
-  background-color: transparent;
-  box-sizing: border-box;
-}
-
-#remember > label {
-  display: inline-block;
-  width: auto;
-}
-
-
-#side-bar {
-  background-color: #666666;
-  width: 19%;
-  float: left;
-  padding: 1% 1% 1% 0;
-  overflow:hidden ;
-  height: 100%;
-  h4 {
-    color: red;
-  }
-}
-#products {
-  background: #ffffff;
-  margin-left: 20%;
-}
-/////////////////////////////////////////////////
-// i just added below lines for cart table -erf@n
-#main {
-  background: url("1584335.png") repeat;
-}
-#main .cart_title {
-  font: 120% bold;
-}
-#main .item_price, #store .total_line {
-  text-align: right;
-}
-#main .total_line .total_cell {
   font-weight: bold;
-  border-top: 1px solid #595;
+  @include button(shiny, #ff0009);
+  color: yellow;
+  display: inline;
 }
-// styles for the cart in the sidebar
-#cart, #cart table {
-  font-size: smaller;
-  color:
-    white;
+
+
+#cols {
+  background: none;
 }
-#cart table {
-  border-top:
-    1px dotted #595;
-  border-bottom: 1px dotted #595;
-  margin-bottom: 10px;
-}
-///////////////////////////////////////////////////
-/* Styles for order form */
-.order_form fieldset {
-  background: #cc6666;
-}
-.order_form legend {
-  color: #dfd;
-  background: #cc0000;
-  font-family: sans-serif;
-  padding: 0.2em 1em;
-}
-.order_form label {
-  width: 5em;
-  float: left;
+#cols .item_price, #store .total_line {
   text-align: right;
-  padding-top: 0.2em;
-  margin-right: 0.1em;
-  display: block;
 }
-//////////////////////////////////////////////////////
+
+footer {
+  text-align: center;
+}
+.actions {
+  opacity: 1;
+}

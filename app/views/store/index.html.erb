@@ -3,30 +3,29 @@
     <div id="cart">
 
 
-      <div class="cart_title" >Your Cart</div>
+      <h4>Your Cart</h4>
       <table>
         <% for item in @cart.line_items %>
             <tr>
               <td><%= item.quantity %>&times;</td>
               <td><%= item.product.name %></td>
               <td class="item_price" ><%= number_to_currency(item.total_price) %></td>
-              <td><%= button_to 'remove' , item , :method => :delete %></td>
+              <td><%= button_to 'Remove' , item , :method => :delete %></td>
             </tr>
         <% end %>
-        <tr class="total_line" >
+        <tr id="total_line" >
           <td colspan="2" >Total</td>
-          <td class="total_cell" ><%= number_to_currency(@cart.total_price) %></td>
+          <td id="total_price" ><%= number_to_currency(@cart.total_price) %></td>
         </tr>
       </table>
-      <div class="actions"><%= button_to 'Empty cart' , @cart, :method => :delete,
-                    :confirm => 'Are you sure?' %></div>
-      <div class="actions"><%= button_to 'Checkout', new_order_path, :method => :get %></div>
-
+      <div id="cart-buttons">
+        <%= button_to 'Empty cart' , @cart, :method => :delete,:confirm => 'Are you sure?' %>
+        <%= button_to 'Checkout', new_order_path, :method => :get %>
+      </div>
 
     </div>
   </div>
-<div id='products'>
-  <h1>IUST Store</h1>
+<div id='main'>
 <% @products.each do |product| %>
      <div class="entry">
        <span class="product_image_holder"><%= image_tag product.image_url %></span>

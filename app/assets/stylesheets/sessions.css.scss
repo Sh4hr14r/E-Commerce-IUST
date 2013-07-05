@@ -1,3 +1,12 @@
 // Place all the styles related to the sessions controller here.
 // They will automatically be included in application.css.scss.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bourbon";
+
+#remember > label {
+  display: inline-block;
+  width: auto;
+}
+input[type=checkbox] {
+  margin-right: 8px;
+}

@@ -1,3 +1,14 @@
 // Place all the styles related to the store controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bourbon";
+
+#main {
+  background: #ffffff;
+  margin-left: 23%;
+  padding-left: 2%;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px 10px hsla(0, 0%, 0%, 0.65);
+}

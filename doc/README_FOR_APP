@@ -1,18 +1,18 @@
 == IUST E-Commerce project
 
 * Based on Ruby programming language
-* A Ruby on Rails based website for e-commerce solutions
+* A Ruby on Rails based e-commerce website
 
 == Specifications
 
-* Ruby version : 1.9
+* Ruby version : 1.9.3
 * Rails version: 3.2.13
 * IDE used for project: JetBrains Rubymine 5.4
 
 == Contributors
 
-* Shahriar Mahroughi
-* Alireza Sanaei
+* Seyyed Shahriar Mahroughi
+* Seyyed Alireza Sanaei
 * Erfan Sharaf zadeh
 
 == Project Version Control

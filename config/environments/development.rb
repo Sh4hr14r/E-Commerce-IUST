@@ -37,5 +37,13 @@ EcomAuth::Application.configure do
 
   #Mailer configuration
   config.action_mailer.default_url_options = {:host => "localhost:3000"}
+  config.action_mailer.smtp_settings = {
+      :address => "smtp.gmail.com",
+      :port => 25,
+      :domain => "gmail.com",
+      :user_name => "ecommerce.iust",
+      :password => "aghaximoos",
+      :authentication => "plain"
+  }
 
 end

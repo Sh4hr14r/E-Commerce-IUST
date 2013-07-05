@@ -1,3 +1,45 @@
 // Place all the styles related to the carts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bourbon";
+
+#side-bar {
+  background-color: #00034d;
+  border-radius: 10px;
+  border: groove darken(yellow,30%);
+  width: 19%;
+  float: left;
+  padding: 1% 1% 1% 1%;
+  overflow:hidden ;
+  box-shadow: 0 0 4px 5px hsla(0, 0%, 0%, 0.65);
+  h4 {
+    color: red;
+    font-size: 2em;
+    text-shadow:0.15em 0.1em darken(red,80%);
+    text-align: center;
+  }
+}
+#cart, #cart table {
+  font-size: small;
+  color: white;
+}
+#cart table {
+  border-top: 2px dotted #595;
+  border-bottom: 2px dotted #595;
+  margin-bottom: 10px;
+}
+#cart-buttons {
+  @include display-box;
+  @include box-align(start);
+  @include box-orient(horizontal);
+  @include box-pack(center);
+  text-align: center;
+}
+
+#total_line  {
+  border-collapse: collapse;
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #fff300;
+  text-shadow: 0.1em 0.1em black;
+}

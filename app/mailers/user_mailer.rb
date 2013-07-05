@@ -2,7 +2,7 @@
 # mailer controllers for user
 # generated manually
 class UserMailer < ActionMailer::Base
-  default from: "s.s.mahroughi@gmail.com"
+  default from: "ecommerce.iust@gmail.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -11,7 +11,7 @@ class UserMailer < ActionMailer::Base
   #
   def password_reset(user)
     @user = user
-    mail to: user.email, :subject => "Password Reset"
+    mail to: user.email, :subject => 'Password Reset'
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -20,8 +20,7 @@ class UserMailer < ActionMailer::Base
   #   en.user_mailer.account_confirmation.subject
   #
   def account_confirmation
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+    @user = user
+    mail to: user.email, :subject => 'Account Confirmation'
   end
 end

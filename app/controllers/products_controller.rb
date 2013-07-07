@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
   # * www.site.com/products
   # * www.site.com/products/new
   # * www.site.com/products/[i]
-  before_filter :access_denied , :except => [:create,:destroy,:update]
+  before_filter :access_denied , :except => [:create,:destroy,:update , :show]
   def access_denied
     redirect_to root_url , :notice => 'You are not authorized to see this page!'
   end

@@ -18,7 +18,7 @@ EcomAuth::Application.routes.draw do
       get :who_bought, :on => :member
   end
 
-
+  get "payment" => "orders#payment"
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"

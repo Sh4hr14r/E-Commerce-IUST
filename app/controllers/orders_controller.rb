@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
   # using the following before_filter users cannot directly access:
   # * www.site.com/orders
   # * www.site.com/orders/[i]
-  before_filter :access_denied , :except => [:create,:destroy,:new,:update]
+  before_filter :access_denied , :only => [:index ,:show]
   def access_denied
     redirect_to root_url , :notice => 'You are not authorized to see this page!'
   end
@@ -74,19 +74,41 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
     @order.add_line_items_from_cart(current_cart)
-
+    @my_order = @order.id
     respond_to do |format|
       if @order.save
-        Cart.destroy(session[:cart_id])
-        session[:cart_id] = nil
-        format.html { redirect_to(root_url, :notice =>
-            'Thank you for your order.' ) }
-        format.xml { render :xml => @order, :status => :created,
-                            :location => @order }
+        if @order.pay_type == 'Credit card'
+          Cart.destroy(session[:cart_id])
+          session[:cart_id] = nil
+          format.html { redirect_to(payment_url, :notice =>
+              'Thank you for your order.Please confirm to connect to bank payment') }
+          format.xml { render :xml => @order, :status => :created,
+                              :location => @order }
+          elsif @order.pay_type== "Direct pay after delivery"
+            Cart.destroy(session[:cart_id])
+            session[:cart_id] = nil
+            format.html { redirect_to(root_url, :notice =>
+                'Thank you for your order.' ) }
+            format.xml { render :xml => @order, :status => :created,
+                                :location => @order }
+          end
       else
         format.html { render action: "new" }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def reset_cart
+    Cart.destroy(session[:cart_id])
+    session[:cart_id] = nil
+  end
+
+  def payment
+    @my_order ||= Order.find_by_email(current_user[:email]) if current_user[:email]
+    @total_order_price = 0
+    @my_order.line_items.each do |item|
+      @total_order_price+=item.total_price
     end
   end
 

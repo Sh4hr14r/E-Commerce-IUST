@@ -78,15 +78,15 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.save
         if @order.pay_type == 'Credit card'
-          #Cart.destroy(session[:cart_id])
-          #session[:cart_id] = nil
+          Cart.destroy(session[:cart_id])
+          session[:cart_id] = nil
           format.html { redirect_to(payment_url, :notice =>
               'Thank you for your order.Please confirm to connect to bank payment') }
           format.xml { render :xml => @order, :status => :created,
                               :location => @order }
           elsif @order.pay_type== "Direct pay after delivery"
-            #Cart.destroy(session[:cart_id])
-            #session[:cart_id] = nil
+            Cart.destroy(session[:cart_id])
+            session[:cart_id] = nil
             format.html { redirect_to(root_url, :notice =>
                 'Thank you for your order.' ) }
             format.xml { render :xml => @order, :status => :created,

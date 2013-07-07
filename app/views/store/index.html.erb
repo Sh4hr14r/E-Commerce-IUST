@@ -28,9 +28,9 @@
 <div id='main'>
 <% @products.each do |product| %>
      <div class="entry">
-       <span class="product_image_holder"><%= image_tag product.image_url %></span>
        <h3 class="product_name"><%= product.name %></h3>
-       <%=truncate product.description,:length =>80 %>
+       <span class="product_image_holder"><%= image_tag product.image_url %></span>
+       <div class="product_description"> <%=truncate product.description,:length =>500 %> </div>
        <div class="price_line">
          <span class="price"><%= product.price %>$</span>
          <div class="actions"><%= button_to 'Add to Cart', line_items_path(:product_id => product) %></div>

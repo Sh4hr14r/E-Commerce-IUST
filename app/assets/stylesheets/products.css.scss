@@ -1,3 +1,25 @@
 // Place all the styles related to the products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bourbon";
+.entry {
+  img {
+    min-width: 150px;
+    min-height: 150px;
+    max-height: 300px;
+    max-width: 300px;
+    border-radius: 10px;
+    @include box-shadow(2px 2px 3px 3px hsla(0, 0%, 0%, 0.75));
+    float: right;
+  }
+  .product_description {
+
+  }
+}
+
+.entry :nth-child(odd) {
+
+}
+.entry :nth-child(even) {
+
+}

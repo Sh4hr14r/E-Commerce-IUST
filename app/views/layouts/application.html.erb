@@ -24,11 +24,13 @@
   <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, :id => "flash_#{name}" %>
   <% end %>
+
 </div>
 
   <div id="cols">
     <%= yield %>
   </div>
+
 <footer>
     <% if mobile_device? %>
         <%= link_to "Full Site", :mobile => 0 %>

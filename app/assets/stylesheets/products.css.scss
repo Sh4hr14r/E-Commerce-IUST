@@ -3,6 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "bourbon";
 .entry {
+  .product_name {
+    a{
+      text-decoration: none;
+      color: #576bff;
+    }
+    font-size: 1.3em;
+    text-shadow: 1px 1px  #536480;
+    font-weight: bolder;
+  }
   img {
     min-width: 150px;
     min-height: 150px;
@@ -10,16 +19,29 @@
     max-width: 300px;
     border-radius: 10px;
     @include box-shadow(2px 2px 3px 3px hsla(0, 0%, 0%, 0.75));
-    float: right;
   }
+  .right_side {
+    @include display-box;
+    @include box-align(start);
+    @include box-orient(vertical);
+    @include box-pack(start);
+    padding-right: 10px;
+    float: left;
+    width: 300px;
+      }
   .product_description {
-
+    font-size: 1.1em;
   }
-}
-
-.entry :nth-child(odd) {
-
-}
-.entry :nth-child(even) {
-
+  .price_line {
+    @include display-box;
+    @include box-align(start);
+    @include box-orient(horizontal);
+    @include box-pack(start);
+  }
+  .price {
+    font-size: 2em;
+    text-shadow: 2px 2px #19363c;
+    color: green;
+  }
+  @include clearfix;
 }

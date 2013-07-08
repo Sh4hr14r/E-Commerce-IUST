@@ -6,10 +6,17 @@
 #main {
   background: #ffffff;
   margin-left: 23%;
-  padding-left: 2%;
+  padding-left: 20px;
+  padding-right: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 10px;
   box-shadow: 0 0 8px 10px hsla(0, 0%, 0%, 0.65);
-
+  .entry:nth-child(odd){
+    background-color: #ffffff;
+  }
+  .entry:nth-child(even){
+    background-color: darken(#ffffff,10%);
+    border-radius: 10px;
+  }
 }

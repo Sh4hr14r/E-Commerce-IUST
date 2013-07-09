@@ -15,3 +15,5 @@ rerun.txt
 pickle-email-*.html
 /.idea
 *.sqlite
+README.md~
+Gemfile~

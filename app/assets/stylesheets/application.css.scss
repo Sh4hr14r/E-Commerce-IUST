@@ -5,6 +5,7 @@
 @import "sessions.css.scss";
 @import "store.css.scss";
 @import "products.css.scss";
+@import "orders.css.scss";
 
 body {
     background: url('bgpat.png');
@@ -27,16 +28,13 @@ a {
 }
 
 #container {
-    width: 100%;
-    background-color: #FFF;
-    padding: 0 0;
-    border: none;
-    margin: 0;
-}
+  width: 40%;
+  background-color: #FFF;
+  padding: 0 0;
+  margin: 0 auto 0 auto;
+  text-align: center;
+  border-radius: 10px;
 
-#user-nav {
-  background-color: #ffffff;
-  width: 100%;
 }
 
 input[type="submit"] {
@@ -59,17 +57,39 @@ form{
   label {
     display: block;
     margin-bottom: 2px;
+    font-weight: bold;
   }
   .field {
     margin:1px;
   }
+  textarea:focus,input:focus {
+    background: #9af8fa;
+  }
+}
+.form {
+  background-color: #ffffff;
+  box-shadow: 0 0 8px 10px hsla(0, 0%, 0%, 0.65);
+  border-radius: 10px;
+}
+.form_title {
+  color: #ffff00;
+  text-shadow: 1px 1px blue;
+  text-align:center ;
+}
+.link-but{
+  @include button(shiny,#ff0009);
+  color: #ffff00;
+
 }
 //rules for handling error messages and notices
 #flash_notice {
-    background-color: #CFC;
-    border: solid 1px #6C6;
-    padding: 5px 8px;
-    margin: 10px 0;
+  @include linear-gradient(to top, #EEEEEE, #BBBBBB, $fallback:#F4F4F4);
+  border: solid 1px #6C6;
+  padding: 5px 8px;
+  margin: 10px 0;
+  border-radius: 10px;
+  color: darkred;
+  font-weight: bolder;
 }
 
 #flash_error, #flash_alert {
@@ -110,4 +130,124 @@ form{
     margin: 15px 0;
 }
 //
+//Drop Down Menu
 
+#menu {
+  list-style: none;
+  width: 940px;
+  margin: 20px auto 10px auto;
+  height: 43px;
+  padding: 0px 20px 0px 20px;
+  border-radius: 10px;
+  @include linear-gradient(to top, #0272a7, #013953, $fallback :#014464 );
+  box-shadow:inset 0px 0px 1px #edf9ff;
+  border: 1px solid #002232;
+  .dropdown {
+    margin:4px auto;
+    position:absolute;
+    left:-999em; /* Hides the drop down */
+    text-align:left;
+    padding:10px 5px 10px 5px;
+    border:1px solid #777777;
+    border-top:none;
+
+    /* Gradient background */
+    @include linear-gradient(to top, #EEEEEE, #BBBBBB, $fallback:#F4F4F4);
+
+    /* Rounded Corners */
+    border-radius: 0px 5px 5px 5px;
+  }
+  li{
+    float:left;
+    display:block;
+    text-align:center;
+    position:relative;
+    padding: 4px 10px 4px 10px;
+    margin-right:30px;
+    margin-top:7px;
+    border:none;
+    a {
+      text-shadow: 1px 1px 1px #000;
+      text-decoration: none;
+      color: #ffffff;
+    }
+    #site-title {
+      color: #ffff00;
+      font-weight: bold;
+    }
+    em {
+      color: darkred;
+    }
+
+  }
+  .menu_right {
+    float: right;
+    margin-right: 0;
+  }
+
+  li .align_right{
+    border-radius: 5px 0px 5px 5px;
+  }
+  li:hover{
+    @include linear-gradient(to top, #F4F4F4, #EEEEEE);
+    border: 1px solid #777777;
+    padding: 4px 9px 4px 9px;
+    border-radius: 5px 5px 0 0;
+    a {
+      color:#161616;
+      text-shadow: 1px 1px 1px #FFFFFF;
+    }
+    .dropdown {
+      left:-1px;top:auto;
+    }
+    .col_1 a {
+      color: blue;
+    }
+  }
+
+  li:hover .align_right{
+    left:auto;
+    right:-1px;
+    top:auto;
+  }
+}
+#log-in{
+  width: relative;
+  .login-but {
+    @include button(pill, #4957ff);
+    color: #ffff00;
+  }
+  .login-name {
+    color:red;
+    text-shadow: 1px 1px gray;
+  }
+}
+
+#logged-in{
+  width: 300px;
+}
+
+#not-logged-in{
+  width: 170px;
+}
+
+
+.dropdown_1column {width: 140px;}
+.dropdown_2columns {width: 280px;}
+.dropdown_3columns {width: 420px;}
+.dropdown_4columns {width: 560px;}
+.dropdown_5columns {width: 700px;}
+
+.col_1,.col_2,.col_3,.col_4,.col_5 {
+  display:inline;
+  float: left;
+  position: relative;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.col_1 {width:130px;}
+.col_2 {width:270px;}
+.col_3 {width:410px;}
+.col_4 {width:550px;}
+.col_5 {width:690px;}

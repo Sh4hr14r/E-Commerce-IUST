@@ -199,9 +199,8 @@ following lookup:</p>
           <div class="method-source-code" id="account_confirmation-source">
             <pre><span class="ruby-comment"># File app/mailers/user_mailer.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">account_confirmation</span>
-  <span class="ruby-ivar">@greeting</span> = <span class="ruby-string">&quot;Hi&quot;</span>
-
-  <span class="ruby-identifier">mail</span> <span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;to@example.org&quot;</span>
+  <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
+  <span class="ruby-identifier">mail</span> <span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">email</span>, <span class="ruby-value">:subject</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Account Confirmation'</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- account_confirmation-source -->
           
@@ -235,7 +234,7 @@ following lookup:</p>
             <pre><span class="ruby-comment"># File app/mailers/user_mailer.rb, line 12</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">password_reset</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
-  <span class="ruby-identifier">mail</span> <span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">email</span>, <span class="ruby-value">:subject</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Password Reset&quot;</span>
+  <span class="ruby-identifier">mail</span> <span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">email</span>, <span class="ruby-value">:subject</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Password Reset'</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- password_reset-source -->
           

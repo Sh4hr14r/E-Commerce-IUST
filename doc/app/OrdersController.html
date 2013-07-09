@@ -82,6 +82,10 @@
     
     <li><a href="#method-i-new">#new</a>
     
+    <li><a href="#method-i-payment">#payment</a>
+    
+    <li><a href="#method-i-reset_cart">#reset_cart</a>
+    
     <li><a href="#method-i-show">#show</a>
     
     <li><a href="#method-i-update">#update</a>
@@ -260,19 +264,28 @@ is defined</p>
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/orders_controller.rb, line 71</span>
+            <pre><span class="ruby-comment"># File app/controllers/orders_controller.rb, line 74</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@order</span> = <span class="ruby-constant">Order</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:order</span>])
   <span class="ruby-ivar">@order</span>.<span class="ruby-identifier">add_line_items_from_cart</span>(<span class="ruby-identifier">current_cart</span>)
-
+  <span class="ruby-ivar">@my_order</span> = <span class="ruby-ivar">@order</span>.<span class="ruby-identifier">id</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@order</span>.<span class="ruby-identifier">save</span>
-      <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">destroy</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:cart_id</span>])
-      <span class="ruby-identifier">session</span>[<span class="ruby-value">:cart_id</span>] = <span class="ruby-keyword">nil</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">root_url</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span>
-          <span class="ruby-string">'Thank you for your order.'</span> ) }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@order</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:created</span>,
-                          <span class="ruby-value">:location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@order</span> }
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@order</span>.<span class="ruby-identifier">pay_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">'Credit card'</span>
+        <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">destroy</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:cart_id</span>])
+        <span class="ruby-identifier">session</span>[<span class="ruby-value">:cart_id</span>] = <span class="ruby-keyword">nil</span>
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">payment_url</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span>
+            <span class="ruby-string">'Thank you for your order.Please confirm to connect to bank payment'</span>) }
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@order</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:created</span>,
+                            <span class="ruby-value">:location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@order</span> }
+        <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@order</span>.<span class="ruby-identifier">pay_type</span><span class="ruby-operator">==</span> <span class="ruby-string">&quot;Direct pay after delivery&quot;</span>
+          <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">destroy</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:cart_id</span>])
+          <span class="ruby-identifier">session</span>[<span class="ruby-value">:cart_id</span>] = <span class="ruby-keyword">nil</span>
+          <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">root_url</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span>
+              <span class="ruby-string">'Thank you for your order.'</span> ) }
+          <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@order</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:created</span>,
+                              <span class="ruby-value">:location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@order</span> }
+        <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;new&quot;</span> }
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@order</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
@@ -305,7 +318,7 @@ is defined</p>
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/orders_controller.rb, line 108</span>
+            <pre><span class="ruby-comment"># File app/controllers/orders_controller.rb, line 133</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@order</span> = <span class="ruby-constant">Order</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@order</span>.<span class="ruby-identifier">destroy</span>
@@ -341,7 +354,7 @@ is defined</p>
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/orders_controller.rb, line 65</span>
+            <pre><span class="ruby-comment"># File app/controllers/orders_controller.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@order</span> = <span class="ruby-constant">Order</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -415,13 +428,16 @@ is defined</p>
   <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">nil?</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_url</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;You must first sign in to place order&quot;</span>
     <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@order</span> = <span class="ruby-constant">Order</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># new.html.erb</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@order</span> }
+    <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-ivar">@order</span> = <span class="ruby-constant">Order</span>.<span class="ruby-identifier">new</span>
 
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># new.html.erb</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@order</span> }
-  <span class="ruby-keyword">end</span>
+
+
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           
@@ -431,6 +447,71 @@ is defined</p>
 
         
       </div><!-- new-method -->
+
+    
+      <div id="method-i-payment" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">payment</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="payment-source">
+            <pre><span class="ruby-comment"># File app/controllers/orders_controller.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">payment</span>
+  <span class="ruby-ivar">@my_order</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Order</span>.<span class="ruby-identifier">find_by_email</span>(<span class="ruby-identifier">current_user</span>[<span class="ruby-value">:email</span>]) <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>[<span class="ruby-value">:email</span>]
+  <span class="ruby-ivar">@total_order_price</span> = <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@my_order</span>.<span class="ruby-identifier">line_items</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@total_order_price</span><span class="ruby-operator">+=</span><span class="ruby-identifier">item</span>.<span class="ruby-identifier">total_price</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- payment-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- payment-method -->
+
+    
+      <div id="method-i-reset_cart" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reset_cart</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="reset_cart-source">
+            <pre><span class="ruby-comment"># File app/controllers/orders_controller.rb, line 102</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">reset_cart</span>
+  <span class="ruby-constant">Cart</span>.<span class="ruby-identifier">destroy</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:cart_id</span>])
+  <span class="ruby-identifier">session</span>[<span class="ruby-value">:cart_id</span>] = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- reset_cart-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- reset_cart-method -->
 
     
       <div id="method-i-show" class="method-detail ">
@@ -484,7 +565,7 @@ is defined</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/orders_controller.rb, line 92</span>
+            <pre><span class="ruby-comment"># File app/controllers/orders_controller.rb, line 117</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@order</span> = <span class="ruby-constant">Order</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 

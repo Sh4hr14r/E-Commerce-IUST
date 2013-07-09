@@ -1,4 +1,4 @@
-EcomAuth::Application.routes.draw do
+Ecomiust::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   root :to => "store#index"
   ActiveAdmin.routes(self)

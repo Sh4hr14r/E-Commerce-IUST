@@ -22,7 +22,6 @@
       </tr>
     </table>
 <form action="https://acquirer.samanepay.com/payment.aspx" method="post">
-      <!--<input type="hidden" id="Amount" name="Amount" value='123'>-->
       <%= hidden_field_tag 'Amount', @total_order_price.to_int * 35000 %>
       <input type="hidden" id="MID" name="MID" value="2031">
       <input type="hidden" id="ResNum" name="ResNum" value="1021">

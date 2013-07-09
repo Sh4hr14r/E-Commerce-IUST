@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-EcomAuth::Application.load_tasks
+Ecomiust::Application.load_tasks

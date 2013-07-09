@@ -1,31 +1,34 @@
 <html>
 <body>
-<table style="color: #ffffff;">
-  <tr>
-  <th>Name</th>
-  <th>Price</th>
-  <th>Quantity</th>
-  <th>Total Price</th>
-  </tr>
-  <% @my_order.line_items.each do |line| %>
+<div class="show-order">
+    <table>
       <tr>
-        <td><%= line.product.name %></td>
-        <td><%= line.product.price %></td>
-        <td><%= line.quantity %></td>
-        <td><%= number_to_currency(line.product.price * line.quantity) %></td>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total Price</th>
       </tr>
-  <% end %>
-  <tr>
-    <td>Total Price:</td>
-    <td><%=number_to_currency @total_order_price %></td>
-  </tr>
-</table>
+      <% @my_order.line_items.each do |line| %>
+          <tr>
+            <td><%= line.product.name %></td>
+            <td><%= line.product.price %></td>
+            <td><%= line.quantity %></td>
+            <td><%= number_to_currency(line.product.price * line.quantity) %></td>
+          </tr>
+      <% end %>
+      <tr class="total-price-row">
+        <td>Total Price:</td>
+        <td class="order-total-price-show"><%=number_to_currency @total_order_price %></td>
+      </tr>
+    </table>
 <form action="https://acquirer.samanepay.com/payment.aspx" method="post">
-      <input type="hidden" id="Amount" name="Amount" value="123456">
+      <!--<input type="hidden" id="Amount" name="Amount" value='123'>-->
+      <%= hidden_field_tag 'Amount', @total_order_price.to_int * 35000 %>
       <input type="hidden" id="MID" name="MID" value="2031">
       <input type="hidden" id="ResNum" name="ResNum" value="1021">
       <input type="hidden" id="RedirectURL" name="RedirectURL" value="http://localhost:3000">
       <input type="submit" class="buttons1" value='Confirm'name="btn_ok" >
 </form>
+</div>
 </body>
 </html>

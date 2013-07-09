@@ -1,29 +1,35 @@
 <p id="notice"><%= notice %></p>
+<div class="product-show">
+  <div class="product-image-holder">
+  <%=image_tag @product.image_url %>
+  </div>
 
-<p>
-  <b>Name:</b>
-  <%= @product.name %>
-</p>
+  <div class="part">
+  <p>
+      <b>Name:</b>
+      <%= @product.name %>
+    </p>
+  </div>
 
-<p>
-  <b>Manufacturer:</b>
-  <%= @product.manufacturer %>
-</p>
+  <div class="part">
+  <p>
+      <b>Manufacturer:</b>
+      <%= @product.manufacturer %>
+    </p>
+  </div>
 
-<p>
-  <b>Description:</b>
-  <%= @product.description %>
-</p>
+  <div class="part">
+    <p>
+      <b>Description:</b>
+      <div class="desc"><%= @product.description %> </div>
+    </p>
+  </div>
 
-<p>
-  <b>Price:</b>
-  <%= @product.price %>
-</p>
-
-<p>
-  <b>Image url:</b>
-  <%= @product.image_url %>
-</p>
-
-
-<%= link_to 'Back', products_path %>
+  <div class="part">
+  <p>
+      <b>Price:</b>
+      <%= number_to_currency @product.price %>
+    </p>
+  </div>
+    <%= link_to 'Back', root_url, :class => "link-but" %>
+</div>
